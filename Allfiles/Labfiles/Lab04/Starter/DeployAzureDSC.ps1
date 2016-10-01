@@ -7,6 +7,11 @@ $resourceGroupName = 'ResDevWebRG'
 $storageAccount = Get-AzureRmStorageAccount -ResourceGroupName $resourceGroupName
 $storageAccountKey = (Get-AzureRmStorageAccountKey -ResourceGroupName $resourceGroupName -Name $storageAccount.StorageAccountName).Key1
 
+# to account for changes described in https://msdn.microsoft.com/en-us/library/mt607145.aspx 
+If (!($storageAccountKey)) {
+$storageAccountKey = (Get-AzureRmStorageAccountKey -ResourceGroupName $resourceGroupName -Name $storageAccount.StorageAccountName).Value[0]
+}
+
 # we are using default container 
 $containerName = 'windows-powershell-dsc'
 
