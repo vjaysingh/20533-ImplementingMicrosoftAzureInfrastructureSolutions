@@ -7,7 +7,7 @@ $resourceGroupName = 'ResDevWebRG'
 $storageAccount = Get-AzureRmStorageAccount -ResourceGroupName $resourceGroupName
 $storageAccountKey = (Get-AzureRmStorageAccountKey -ResourceGroupName $resourceGroupName -Name $storageAccount.StorageAccountName).Key1
 
-# to account for changes described in https://msdn.microsoft.com/en-us/library/mt607145.aspx 
+# to account for changes described in https://msdn.microsoft.com/en-us/library/mt607145.aspx (per input from molenaar)
 If (!($storageAccountKey)) {
 $storageAccountKey = (Get-AzureRmStorageAccountKey -ResourceGroupName $resourceGroupName -Name $storageAccount.StorageAccountName).Value[0]
 }
